@@ -58,3 +58,16 @@ end
 
 puts service.env["RAILS_ENV"]
 puts service.env["RACK_ENV"]
+
+# Another example to switch Rails env.
+
+class SwitchRailsEnvService
+
+  def switch_env(env)
+    old_env, Rails.env = Rails.env, env
+    yield
+  ensure
+    Rails.env = old_env
+  end
+
+end
